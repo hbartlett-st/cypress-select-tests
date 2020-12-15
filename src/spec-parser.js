@@ -1,6 +1,8 @@
 const falafel = require('falafel')
 const debug = require('debug')('cypress-select-tests')
 
+const parserOpts = {allowImportExportEverywhere: true}
+
 const isTestBlock = name => node => {
   return (
     node.type === 'CallExpression' &&
@@ -71,7 +73,6 @@ const findTests = source => {
     if (isIt(node)) {
       const names = [getItsName(node)]
       findSuites(node, names)
-
       // we were searching from inside out, thus need to revert the names
       const testName = names.reverse()
       // console.log('found test', testName)
@@ -92,7 +93,7 @@ const findTests = source => {
   }
 
   // ignore source output for now
-  falafel(source, onNode)
+  falafel(source, parserOpts, onNode)
 
   return foundTestNames
 }
@@ -131,7 +132,7 @@ const skipTests = (source, leaveTests) => {
     // }
   }
 
-  const output = falafel(source, onNode)
+  const output = falafel(source, parserOpts, onNode)
 
   return output.toString()
 }

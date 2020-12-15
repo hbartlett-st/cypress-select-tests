@@ -24,6 +24,10 @@
 		{
 			"name": "Richard Vowles",
 			"email": "richard@bluetrainsoftware.com"
+		},
+		{
+			"name": "Harry Bartlett",
+			"email": "hbartlett@servicetitan.com"
 		}
 	],
   "license": "MIT",
